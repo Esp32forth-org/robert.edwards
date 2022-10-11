@@ -10,7 +10,7 @@
 \ Run MAIN2 to demonstrate 5 periodically timed tasks running independently without using the multitasker
 
 FORTH DEFINITIONS
-ONLY FORTH ALSO MINI-OOF
+ONLY FORTH
 
 DEFINED? *TIMERS* [IF] forget *TIMERS* [THEN] 
 : *TIMERS* ;
