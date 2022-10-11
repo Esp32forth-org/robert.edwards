@@ -24,15 +24,17 @@ create crlf 13 C, 10 C,
     BEGIN
         tib #tib accept                     \ read a line of the file from the input stream
         tib over                         
-        S" <EOF>" startswith?               \ does it start with <EOF> ?
+        S" <EOF>" startswith?               \ does the line start with <EOF> ?
         DUP IF
             swap drop                       \ Yes, so drop the end line of the file containing <EOF>
         ELSE
             swap
             tib swap
-            R@ WRITE-FILE throw             \ write the line to the open file
+            R@ WRITE-FILE throw             \ No, so write the line to the open file
             crlf 2 R@ WRITE-FILE throw      \ and terminate line with cr-lf
         THEN
     UNTIL                                   \ repeat until <EOF> found
     R> CLOSE-FILE throw                     \ Close the file
 ;
+
+\ This was originally written to provides files for 'Batch file for ESP32forth.fth'
